@@ -13,7 +13,7 @@ def home():
     year = now.year
     print(year)
     # 第二个参数是 **kwargs 类型的
-    return render_template('01index.html', num=random_number, current_year=year)
+    return render_template('my_index.html', num=random_number, current_year=year)
 
 
 if __name__ == "__main__":

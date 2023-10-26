@@ -12,7 +12,7 @@ def home():
     year = now.year
     print(year)
     # 第二个参数是 **kwargs 类型的
-    return render_template('01index.html', num=random_number, current_year=year)
+    return render_template('my_index.html', num=random_number, current_year=year)
 
 
 @app.route('/guess/<name>')
@@ -27,7 +27,21 @@ def guess(name):
     gender = gender_data['gender']
 
     # 第二个参数是 **kwargs 类型的
-    return render_template('02index.html', name=name, age=age, gender=gender)
+    return render_template('guess.html', name=name, age=age, gender=gender)
+
+@app.route('/blog/<num>')
+def get_blog(num):
+    print(num)
+    blog_url = "https://api.npoint.io/c790b4d5cab58020d391"
+    response = requests.get(url=blog_url)
+    response.raise_for_status()
+    all_posts = response.json()
+    print(all_posts)
+
+    return render_template('blog.html', posts=all_posts)
+
+
+
 
 
 if __name__ == "__main__":
